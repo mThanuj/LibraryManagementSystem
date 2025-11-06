@@ -6,7 +6,7 @@ public class User {
 
     String password;
 
-    Book[] books;
+    Book[] books = new Book[5];
 
 
     User() {
@@ -15,12 +15,19 @@ public class User {
     User(String username, String password) {
         this.username = username;
         this.password = password;
-
-        this.books = new Book[5];
     }
 
-    public boolean getBook(String name) {
-        return false;
+    public boolean getBookFromLibrary(String name) {
+        Book book = Library.findBook(name);
+
+        for (int i = 0; i < books.length; i++) {
+            if (books[i] == null) {
+                books[i] = book;
+                break;
+            }
+        }
+
+        return book != null;
     }
 
     public boolean returnBook(String name) {

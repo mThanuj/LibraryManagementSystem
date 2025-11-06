@@ -1,22 +1,26 @@
 package com.mThanuj.LMS;
 
 
+import com.mThanuj.LMS.helpers.Auth;
+import com.mThanuj.LMS.helpers.Book;
 import com.mThanuj.LMS.helpers.Library;
-import com.mThanuj.LMS.helpers.User;
 
 public class Main {
 
     static void main() {
+        Auth.register("thanuj", "password");
 
-        for (User user : Library.users) {
-            if (user == null) {
-                System.out.println("null");
-                continue;
-            }
+        var user = Auth.login("thanuj", "password");
 
-            System.out.println(user.showDetails());
-        }
+        Library.addBook(new Book("b1", "a1", "c1", 1));
+        Library.addBook(new Book("b2", "a2", "c2", 2));
+        Library.addBook(new Book("b3", "a3", "c3", 3));
 
+        System.out.println(Library.printAllBooks());
+
+        user.getBookFromLibrary("b1");
+
+        System.out.println(Library.printAllBooks());
     }
 
 }

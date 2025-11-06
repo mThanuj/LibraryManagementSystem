@@ -9,8 +9,8 @@ public class Auth {
         return Library.addUser(user);
     }
 
-    public static boolean login(String username, String password) {
-        return false;
+    public static User login(String username, String password) {
+        return Library.checkUserExists(username, password);
     }
 
 }
